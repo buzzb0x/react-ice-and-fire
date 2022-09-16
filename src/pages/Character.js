@@ -1,11 +1,14 @@
 import { useParams } from "react-router-dom";
+import Spoiler from "../components/Spoiler";
 import { Subtitle, Title } from "../components/Typography";
 import { useGot } from "../lib/api";
+import { getRandomAlias } from "../lib/characters";
 import { getImageUrl } from "../lib/lorem";
 
 const strings = {
   summarySectionTitle: "Summary",
   deathSectionTitle: "Death",
+  characterIsAlive: "This character is alive… for now.",
   povBooksSectionTitle: "Point-of-View Chapters",
   relativesSectionTitle: "Relatives",
 };
@@ -23,6 +26,10 @@ const Character = () => {
         alt={character.name}
       />
       <Title>{character.name}</Title>
+
+      {character?.aliases?.[0] && (
+        <p>AKA {getRandomAlias(character.aliases)}</p>
+      )}
 
       <div>
         <Subtitle>{strings.summarySectionTitle}</Subtitle>
@@ -45,6 +52,7 @@ const Character = () => {
 
       <div>
         <Subtitle>{strings.deathSectionTitle}</Subtitle>
+        <Spoiler>{character.died || strings.characterIsAlive}</Spoiler>
       </div>
 
       <div>
