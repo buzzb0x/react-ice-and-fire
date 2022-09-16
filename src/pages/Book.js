@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import CharacterLoader from "../components/CharacterLoader";
 import { Subtitle, Title } from "../components/Typography";
 import { getResourceFromUrl, useGot } from "../lib/api";
-import { getReleaseYear } from "../lib/books";
+import { getReleaseYear, mainBooksIds } from "../lib/books";
 import { getImageUrl } from "../lib/lorem";
 
 const strings = {
@@ -26,15 +26,19 @@ const Book = () => {
         style={{
           display: "flex",
           flexDirection: "column-reverse",
-          alignItems: "flex-start",
+          alignItems: "center",
         }}
       >
-        <div>
+        <div style={{ textAlign: "center" }}>
           <Title>{book.name}</Title>
           <div>{book.authors.join(", ")}</div>
         </div>
         <img
-          src={getImageUrl({ width: 390, height: 600 })}
+          src={
+            mainBooksIds.includes(bookId)
+              ? `/assets/book-covers/${bookId}.jpg`
+              : getImageUrl({ width: 390, height: 600 })
+          }
           alt={strings.coverImgAlt({ title: book.name, releaseYear })}
         />
       </div>

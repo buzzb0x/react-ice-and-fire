@@ -12,6 +12,7 @@ const Book = ({ title, releaseYear, coverUrl, id }) => (
       <img
         src={coverUrl || getImageUrl({ width: 130, height: 200 })}
         alt={strings.coverImgAlt({ title, releaseYear })}
+        style={{ width: 130 }}
       />
       <div>{title}</div>
       <div>{releaseYear}</div>

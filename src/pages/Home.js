@@ -26,7 +26,7 @@ const Home = () => {
       <div>
         <Subtitle>{strings.mainWorksSectionTitle}</Subtitle>
 
-        <div>
+        <div style={{display: "flex", flexBasis: 0.5}}>
           {mainBooksIds.map((id) => (
             <BookLoader bookId={id} />
           ))}
