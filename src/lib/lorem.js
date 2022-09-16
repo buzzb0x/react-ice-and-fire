@@ -1,3 +1,3 @@
-const getImageUrl = ({width, height}) => `https://picsum.photos/${width}/${height}`;
+const getImageUrl = ({width, height}) => `https://via.placeholder.com/${width}x${height}`;
 
 export { getImageUrl };
