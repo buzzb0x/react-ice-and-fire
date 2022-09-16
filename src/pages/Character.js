@@ -4,7 +4,7 @@ import HouseLoader from "../components/HouseLoader";
 import Spoiler from "../components/Spoiler";
 import { Subtitle, Title } from "../components/Typography";
 import { getResourceFromUrl, useGot } from "../lib/api";
-import { getRandomAlias } from "../lib/characters";
+import { generateSummary, getRandomAlias } from "../lib/characters";
 import { getImageUrl } from "../lib/lorem";
 
 const strings = {
@@ -15,7 +15,7 @@ const strings = {
   deathSectionTitle: "Death",
   characterIsAlive: "This character is alive… for now.",
   povBooksSectionTitle: "Point-of-View Chapters",
-  relativesSectionTitle: "Relatives",
+  // relativesSectionTitle: "Relatives",
 };
 
 const Character = () => {
@@ -39,20 +39,7 @@ const Character = () => {
       <div>
         <Subtitle>{strings.summarySectionTitle}</Subtitle>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi officia
-          dolorum quos atque quia, corrupti quae non hic assumenda. Dolorum nam
-          facere, doloribus adipisci alias totam iusto voluptas est, accusamus,
-          commodi aliquam excepturi! Commodi, doloremque explicabo. Quae nihil
-          sequi eligendi architecto totam hic laborum dicta in illo assumenda
-          doloremque similique vel aliquid dignissimos, velit laboriosam?
-          Laudantium similique accusamus rem, totam dolore porro veniam quaerat
-          doloremque vitae odio ab culpa maxime saepe expedita doloribus fugit
-          officia, nobis tenetur voluptatibus dignissimos inventore architecto
-          assumenda, aperiam reprehenderit. Cupiditate iure accusamus esse
-          fugiat exercitationem laboriosam, tenetur est vel quam pariatur
-          consequuntur corporis porro fuga.
-        </p>
+        <p>{generateSummary(character)}</p>
       </div>
 
       <div>
@@ -61,7 +48,7 @@ const Character = () => {
           {character.titles?.[0] ? (
             character.titles.join(", ")
           ) : (
-            <em>strings.characterHasNoTitles</em>
+            <em>{strings.characterHasNoTitles}</em>
           )}
         </p>
       </div>
@@ -78,9 +65,9 @@ const Character = () => {
         <Spoiler>{character.died || strings.characterIsAlive}</Spoiler>
       </div>
 
-      <div>
+      {/* <div>
         <Subtitle>{strings.relativesSectionTitle}</Subtitle>
-      </div>
+      </div> */}
 
       <div>
         <Subtitle>{strings.povBooksSectionTitle}</Subtitle>
