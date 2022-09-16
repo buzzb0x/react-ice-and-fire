@@ -8,6 +8,8 @@ import { getImageUrl } from "../lib/lorem";
 
 const strings = {
   summarySectionTitle: "Summary",
+  titlesSectionTitle: "Titles",
+  characterHasNoTitles: "This character has no title.",
   deathSectionTitle: "Death",
   characterIsAlive: "This character is alive… for now.",
   povBooksSectionTitle: "Point-of-View Chapters",
@@ -48,6 +50,17 @@ const Character = () => {
           assumenda, aperiam reprehenderit. Cupiditate iure accusamus esse
           fugiat exercitationem laboriosam, tenetur est vel quam pariatur
           consequuntur corporis porro fuga.
+        </p>
+      </div>
+
+      <div>
+        <Subtitle>{strings.titlesSectionTitle}</Subtitle>
+        <p>
+          {character.titles?.[0] ? (
+            character.titles.join(", ")
+          ) : (
+            <em>strings.characterHasNoTitles</em>
+          )}
         </p>
       </div>
 
