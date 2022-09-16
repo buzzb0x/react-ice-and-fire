@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
+import BookLoader from "../components/BookLoader";
 import Spoiler from "../components/Spoiler";
 import { Subtitle, Title } from "../components/Typography";
-import { useGot } from "../lib/api";
+import { getResourceFromUrl, useGot } from "../lib/api";
 import { getRandomAlias } from "../lib/characters";
 import { getImageUrl } from "../lib/lorem";
 
@@ -61,6 +62,12 @@ const Character = () => {
 
       <div>
         <Subtitle>{strings.povBooksSectionTitle}</Subtitle>
+
+        <div>
+          {character.povBooks.map((b) => (
+            <BookLoader bookId={getResourceFromUrl(b).id} />
+          ))}
+        </div>
       </div>
     </div>
   );
