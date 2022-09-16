@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import BookLoader from "../components/BookLoader";
+import HouseLoader from "../components/HouseLoader";
 import Spoiler from "../components/Spoiler";
 import { Subtitle, Title } from "../components/Typography";
 import { getResourceFromUrl, useGot } from "../lib/api";
@@ -10,6 +11,7 @@ const strings = {
   summarySectionTitle: "Summary",
   titlesSectionTitle: "Titles",
   characterHasNoTitles: "This character has no title.",
+  allegiancesSectionTitle: "Allegiances",
   deathSectionTitle: "Death",
   characterIsAlive: "This character is alive… for now.",
   povBooksSectionTitle: "Point-of-View Chapters",
@@ -62,6 +64,13 @@ const Character = () => {
             <em>strings.characterHasNoTitles</em>
           )}
         </p>
+      </div>
+
+      <div>
+        <Subtitle>{strings.allegiancesSectionTitle}</Subtitle>
+        {character.allegiances.map((h) => (
+          <HouseLoader houseId={getResourceFromUrl(h).id} />
+        ))}
       </div>
 
       <div>
