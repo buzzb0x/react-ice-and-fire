@@ -3,11 +3,13 @@ import "./App.css";
 import Book from "./pages/Book";
 import Character from "./pages/Character";
 import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    errorElement: <NotFound />,
   },
   {
     path: "/books/:bookId",
