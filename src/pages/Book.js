@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
+import CharacterLoader from "../components/CharacterLoader";
 import { Subtitle, Title } from "../components/Typography";
-import { useGot } from "../lib/api";
+import { getResourceFromUrl, useGot } from "../lib/api";
 import { getReleaseYear } from "../lib/books";
 import { getImageUrl } from "../lib/lorem";
 
@@ -21,7 +22,13 @@ const Book = () => {
 
   return (
     <div>
-      <div style={{ display: "flex", flexDirection: "column-reverse", alignItems: "flex-start" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column-reverse",
+          alignItems: "flex-start",
+        }}
+      >
         <div>
           <Title>{book.name}</Title>
           <div>{book.authors.join(", ")}</div>
@@ -51,9 +58,17 @@ const Book = () => {
         </p>
       </div>
 
-      <div>
-        <Subtitle>{strings.povCharactersSectionTitle}</Subtitle>
-      </div>
+      {book.povCharacters && (
+        <div>
+          <Subtitle>{strings.povCharactersSectionTitle}</Subtitle>
+
+          <div>
+            {book.povCharacters.map((c) => (
+              <CharacterLoader characterId={getResourceFromUrl(c).id} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
